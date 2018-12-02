@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -19,142 +17,168 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
- * @author f5078775
+ * @author PC_LENOVO
  */
 @Entity
 @Table(name = "view_tb_gsv_total_serv_jud")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Gsv.findAll", query = "SELECT g FROM Gsv g")
-    , @NamedQuery(name = "Gsv.findByProtocolo", query = "SELECT g FROM Gsv g WHERE g.protocolo = :protocolo")
-    , @NamedQuery(name = "Gsv.findByCdPrfUnd", query = "SELECT g FROM Gsv g WHERE g.cdPrfUnd = :cdPrfUnd")
-    , @NamedQuery(name = "Gsv.findByProcesso", query = "SELECT g FROM Gsv g WHERE g.processo = :processo")
-    , @NamedQuery(name = "Gsv.findByAtividade", query = "SELECT g FROM Gsv g WHERE g.atividade = :atividade")
-    , @NamedQuery(name = "Gsv.findByDataEntrada", query = "SELECT g FROM Gsv g WHERE g.dataEntrada = :dataEntrada")
-    , @NamedQuery(name = "Gsv.findByIdentificador1", query = "SELECT g FROM Gsv g WHERE g.identificador1 = :identificador1")
-    , @NamedQuery(name = "Gsv.findByIdentificador2", query = "SELECT g FROM Gsv g WHERE g.identificador2 = :identificador2")
-    , @NamedQuery(name = "Gsv.findByIdentificador3", query = "SELECT g FROM Gsv g WHERE g.identificador3 = :identificador3")
+    , @NamedQuery(name = "Gsv.findByCdPrc", query = "SELECT g FROM Gsv g WHERE g.cdPrc = :cdPrc")
+    , @NamedQuery(name = "Gsv.findByNmAgrupPrc", query = "SELECT g FROM Gsv g WHERE g.nmAgrupPrc = :nmAgrupPrc")
+    , @NamedQuery(name = "Gsv.findByNmTipAtvd", query = "SELECT g FROM Gsv g WHERE g.nmTipAtvd = :nmTipAtvd")
+    , @NamedQuery(name = "Gsv.findByCdUsuFun", query = "SELECT g FROM Gsv g WHERE g.cdUsuFun = :cdUsuFun")
+    , @NamedQuery(name = "Gsv.findByNmFasePrc", query = "SELECT g FROM Gsv g WHERE g.nmFasePrc = :nmFasePrc")
+    , @NamedQuery(name = "Gsv.findByDtEntdPrc", query = "SELECT g FROM Gsv g WHERE g.dtEntdPrc = :dtEntdPrc")
+    , @NamedQuery(name = "Gsv.findByDtSaidPrc", query = "SELECT g FROM Gsv g WHERE g.dtSaidPrc = :dtSaidPrc")
+    , @NamedQuery(name = "Gsv.findByCdEtp", query = "SELECT g FROM Gsv g WHERE g.cdEtp = :cdEtp")
+    , @NamedQuery(name = "Gsv.findByIdentific1", query = "SELECT g FROM Gsv g WHERE g.identific1 = :identific1")
+    , @NamedQuery(name = "Gsv.findByIdentific2", query = "SELECT g FROM Gsv g WHERE g.identific2 = :identific2")
+    , @NamedQuery(name = "Gsv.findByIdentific3", query = "SELECT g FROM Gsv g WHERE g.identific3 = :identific3")
     , @NamedQuery(name = "Gsv.findByCdTipAtvd", query = "SELECT g FROM Gsv g WHERE g.cdTipAtvd = :cdTipAtvd")
     , @NamedQuery(name = "Gsv.findByCdClassePrc", query = "SELECT g FROM Gsv g WHERE g.cdClassePrc = :cdClassePrc")
-    , @NamedQuery(name = "Gsv.findByEtapa", query = "SELECT g FROM Gsv g WHERE g.etapa = :etapa")
-    , @NamedQuery(name = "Gsv.findByTipoProcesso", query = "SELECT g FROM Gsv g WHERE g.tipoProcesso = :tipoProcesso")
+    , @NamedQuery(name = "Gsv.findByNmEtp", query = "SELECT g FROM Gsv g WHERE g.nmEtp = :nmEtp")
+    , @NamedQuery(name = "Gsv.findByNmTipPrc", query = "SELECT g FROM Gsv g WHERE g.nmTipPrc = :nmTipPrc")
     , @NamedQuery(name = "Gsv.findByNmClassePrc", query = "SELECT g FROM Gsv g WHERE g.nmClassePrc = :nmClassePrc")})
 public class Gsv implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+    @Basic(optional = false)
+    @Column(name = "CD_PRC")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "PROTOCOLO")
-    private int protocolo;
-    @Basic(optional = false)
-    @Column(name = "CD_PRF_UND")
-    private int cdPrfUnd;
-    @Column(name = "PROCESSO")
-    private String processo;
-    @Column(name = "ATIVIDADE")
-    private String atividade;
-    @Basic(optional = false)
-    
-    @Column(name = "DATA_ENTRADA")
+    private int cdPrc;
+    @Column(name = "NM_AGRUP_PRC")
+    private String nmAgrupPrc;
+    @Column(name = "NM_TIP_ATVD")
+    private String nmTipAtvd;
+    @Column(name = "CD_USU_FUN")
+    private String cdUsuFun;
+    @Column(name = "NM_FASE_PRC")
+    private String nmFasePrc;
+    @Column(name = "DT_ENTD_PRC")
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dataEntrada;
-    @Column(name = "IDENTIFICADOR1")
-    private String identificador1;
-    @Column(name = "IDENTIFICADOR2")
-    private String identificador2;
-    @Column(name = "IDENTIFICADOR3")
-    private String identificador3;
-    @Basic(optional = false)
+    private Date dtEntdPrc;
+    @Column(name = "DT_SAID_PRC")
+    @Temporal(TemporalType.DATE)
+    private Date dtSaidPrc;
+    @Column(name = "CD_ETP")
+    private Integer cdEtp;
+    @Column(name = "IDENTIFIC1")
+    private String identific1;
+    @Column(name = "IDENTIFIC2")
+    private String identific2;
+    @Column(name = "IDENTIFIC3")
+    private String identific3;
     @Column(name = "CD_TIP_ATVD")
-    private int cdTipAtvd;
+    private Integer cdTipAtvd;
     @Column(name = "CD_CLASSE_PRC")
     private Integer cdClassePrc;
-    @Column(name = "ETAPA")
-    private String etapa;
-    @Column(name = "TIPO_PROCESSO")
-    private String tipoProcesso;
+    @Column(name = "NM_ETP")
+    private String nmEtp;
+    @Column(name = "NM_TIP_PRC")
+    private String nmTipPrc;
     @Column(name = "NM_CLASSE_PRC")
     private String nmClassePrc;
 
     public Gsv() {
     }
 
-    public int getProtocolo() {
-        return protocolo;
+    public int getCdPrc() {
+        return cdPrc;
     }
 
-    public void setProtocolo(int protocolo) {
-        this.protocolo = protocolo;
+    public void setCdPrc(int cdPrc) {
+        this.cdPrc = cdPrc;
     }
 
-    public int getCdPrfUnd() {
-        return cdPrfUnd;
+    public String getNmAgrupPrc() {
+        return nmAgrupPrc;
     }
 
-    public void setCdPrfUnd(int cdPrfUnd) {
-        this.cdPrfUnd = cdPrfUnd;
+    public void setNmAgrupPrc(String nmAgrupPrc) {
+        this.nmAgrupPrc = nmAgrupPrc;
     }
 
-    public String getProcesso() {
-        return processo;
+    public String getNmTipAtvd() {
+        return nmTipAtvd;
     }
 
-    public void setProcesso(String processo) {
-        this.processo = processo;
+    public void setNmTipAtvd(String nmTipAtvd) {
+        this.nmTipAtvd = nmTipAtvd;
     }
 
-    public String getAtividade() {
-        return atividade;
+    public String getCdUsuFun() {
+        return cdUsuFun;
     }
 
-    public void setAtividade(String atividade) {
-        this.atividade = atividade;
+    public void setCdUsuFun(String cdUsuFun) {
+        this.cdUsuFun = cdUsuFun;
     }
 
-    public Date getDataEntrada() {
-        return dataEntrada;
+    public String getNmFasePrc() {
+        return nmFasePrc;
     }
 
-    public void setDataEntrada(Date dataEntrada) {
-        this.dataEntrada = dataEntrada;
+    public void setNmFasePrc(String nmFasePrc) {
+        this.nmFasePrc = nmFasePrc;
     }
 
-    public String getIdentificador1() {
-        return identificador1;
+    public Date getDtEntdPrc() {
+        return dtEntdPrc;
     }
 
-    public void setIdentificador1(String identificador1) {
-        this.identificador1 = identificador1;
+    public void setDtEntdPrc(Date dtEntdPrc) {
+        this.dtEntdPrc = dtEntdPrc;
     }
 
-    public String getIdentificador2() {
-        return identificador2;
+    public Date getDtSaidPrc() {
+        return dtSaidPrc;
     }
 
-    public void setIdentificador2(String identificador2) {
-        this.identificador2 = identificador2;
+    public void setDtSaidPrc(Date dtSaidPrc) {
+        this.dtSaidPrc = dtSaidPrc;
     }
 
-    public String getIdentificador3() {
-        return identificador3;
+    public Integer getCdEtp() {
+        return cdEtp;
     }
 
-    public void setIdentificador3(String identificador3) {
-        this.identificador3 = identificador3;
+    public void setCdEtp(Integer cdEtp) {
+        this.cdEtp = cdEtp;
     }
 
-    public int getCdTipAtvd() {
+    public String getIdentific1() {
+        return identific1;
+    }
+
+    public void setIdentific1(String identific1) {
+        this.identific1 = identific1;
+    }
+
+    public String getIdentific2() {
+        return identific2;
+    }
+
+    public void setIdentific2(String identific2) {
+        this.identific2 = identific2;
+    }
+
+    public String getIdentific3() {
+        return identific3;
+    }
+
+    public void setIdentific3(String identific3) {
+        this.identific3 = identific3;
+    }
+
+    public Integer getCdTipAtvd() {
         return cdTipAtvd;
     }
 
-    public void setCdTipAtvd(int cdTipAtvd) {
+    public void setCdTipAtvd(Integer cdTipAtvd) {
         this.cdTipAtvd = cdTipAtvd;
     }
 
@@ -166,20 +190,20 @@ public class Gsv implements Serializable {
         this.cdClassePrc = cdClassePrc;
     }
 
-    public String getEtapa() {
-        return etapa;
+    public String getNmEtp() {
+        return nmEtp;
     }
 
-    public void setEtapa(String etapa) {
-        this.etapa = etapa;
+    public void setNmEtp(String nmEtp) {
+        this.nmEtp = nmEtp;
     }
 
-    public String getTipoProcesso() {
-        return tipoProcesso;
+    public String getNmTipPrc() {
+        return nmTipPrc;
     }
 
-    public void setTipoProcesso(String tipoProcesso) {
-        this.tipoProcesso = tipoProcesso;
+    public void setNmTipPrc(String nmTipPrc) {
+        this.nmTipPrc = nmTipPrc;
     }
 
     public String getNmClassePrc() {
