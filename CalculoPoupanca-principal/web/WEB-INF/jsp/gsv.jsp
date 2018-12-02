@@ -39,12 +39,12 @@
                         <tbody>
                             <c:forEach items="${lista}" var="item">
                                 <tr >
-                                    <td>${item.protocolo}</td>
-                                    <td>${item.processo}</td>
-                                    <td>${item.atividade}</td>
+                                    <td>${item.cdPrc}</td>
+                                    <td>${item.nmAgrupPrc}</td>
+                                    <td>${item. nmTipAtvd}</td>
                                     
                                     
-                                    <td><fmt:formatDate type="date" value="${item.dataEntrada}" pattern="dd/MM/YYY"/></td>
+                                    <td><fmt:formatDate type="date" value="${item.dtEntdPrc}" pattern="dd/MM/YYY"/></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

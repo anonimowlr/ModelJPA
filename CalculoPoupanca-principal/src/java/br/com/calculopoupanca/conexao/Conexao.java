@@ -34,14 +34,14 @@ public class Conexao {
 
     
 //    
-//    private static final String DB_USER ="root";
-//  
-//    private static final String DB_PASSWORD ="root";
-    
-    
-    private static final String DB_USER ="basso";
+    private static final String DB_USER ="root";
   
-    private static final String DB_PASSWORD ="2579368410";
+    private static final String DB_PASSWORD ="root";
+    
+    
+//    private static final String DB_USER ="basso";
+//  
+//    private static final String DB_PASSWORD ="2579368410";
 
    
     
@@ -50,7 +50,7 @@ public class Conexao {
     
     public static Connection conectar(String banco) throws ErroSistema {
         
-         String DB_CONEXAO ="jdbc:mysql://172.20.0.33/" + banco;
+         String DB_CONEXAO ="jdbc:mysql://localhost/" + banco;
        
         
         try {
