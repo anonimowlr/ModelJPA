@@ -5,6 +5,8 @@
  */
 package br.com.modeljpa.testes;
 
+import br.com.modeljpa.conexao.ConnectionFactory;
+import br.com.modeljpa.jpa.EntityManagerUtil;
 import br.com.modeljpa.modelo.Pais;
 import java.util.Set;
 import javax.persistence.EntityManager;
@@ -24,13 +26,13 @@ public class TesteValidacaoPais {
     
     public static void main(String[] args) {
          
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ModelPU");
-        EntityManager em = emf.createEntityManager();
+     
+        EntityManager em =   EntityManagerUtil.getEntityManager();
         
           Pais p = new Pais();
            // p.setId(1);
-        p.setNome("Romenia");
-        p.setIso("rom");
+        p.setNome("Venezuela");
+        p.setIso("VNZ");
           
         
         
@@ -53,7 +55,8 @@ public class TesteValidacaoPais {
         em.persist(p);
         em.getTransaction().commit();
         em.close();
-        emf.close();
+       
+       
         }
         
         
