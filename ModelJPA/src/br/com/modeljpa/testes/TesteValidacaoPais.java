@@ -5,7 +5,6 @@
  */
 package br.com.modeljpa.testes;
 
-import br.com.modeljpa.conexao.ConnectionFactory;
 import br.com.modeljpa.jpa.EntityManagerUtil;
 import br.com.modeljpa.modelo.Pais;
 import java.util.Set;
