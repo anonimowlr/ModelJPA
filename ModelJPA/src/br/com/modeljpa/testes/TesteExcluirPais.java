@@ -21,7 +21,7 @@ public class TesteExcluirPais {
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ModelPU");
         EntityManager em = emf.createEntityManager();
-        Pais p =   em.find(Pais.class, 1);
+        Pais p =   em.find(Pais.class, 4);
         
         em.getTransaction().begin();
          

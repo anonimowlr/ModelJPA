@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "pais")
@@ -21,8 +24,14 @@ public class Pais implements Serializable{
     
     
     @Column(name = "nome", nullable = false,length = 50)
+    @Length (max = 50,message = "O nome não pode ter mais {max} caracteres")
+    @NotBlank(message = "O nome deve ser informado")
+    @NotNull(message = "O nome não pode ser nulo")
     private String nome;
     @Column(name="iso",nullable = false,length = 3)
+     @Length (max = 3,message = "O ISO não pode ter mais {max} caracteres")
+    @NotBlank(message = "O Iso deve ser informado")
+    @NotNull(message = "O Iso não pode ser nulo")
     private String iso;
 
     public Pais() {

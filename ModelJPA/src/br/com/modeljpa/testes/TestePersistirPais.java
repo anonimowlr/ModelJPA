@@ -23,7 +23,7 @@ public class TestePersistirPais {
         
         Pais p = new Pais();
        // p.setId(1);
-        p.setNome("Brasil");
+        p.setNome("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
         p.setIso("Br");
         
         em.getTransaction().begin();
