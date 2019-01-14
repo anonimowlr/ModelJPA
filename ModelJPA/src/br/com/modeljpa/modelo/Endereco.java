@@ -72,10 +72,11 @@ public class Endereco  implements Serializable{
     @Length(max = 30,message = "O referencia nao pode ter mais de {max} caracteres")
    private String referencia;
       @NotNull(message = "A pessoa deve ser informada")
+     
       @ManyToOne
       @JoinColumn(name = "id_da_pessoa",referencedColumnName = "id",nullable = false)
       @ForeignKey(name = "fk_pessoa_id")
-   private Pessoa pessoa;
+       private Pessoa pessoa;
 
     /**
      * @return the id

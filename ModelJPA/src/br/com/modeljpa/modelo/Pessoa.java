@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -51,8 +52,8 @@ public class Pessoa implements  Serializable{
     @Length(max = 14,message = "O telefone nao pode ter mais de {max} caracteres")
     private String telefone;
       
-      
-      List<Endereco> enderecos = new ArrayList<>();
+      @OneToMany(mappedBy = "pessoa")// aqui coloca o nome do atribudo da classe relacionada que mantem  alicagação neste caso o atributo pessoa da classe  Endereco
+      private List<Endereco> enderecos = new ArrayList<>();
 
     public Pessoa() {
     }
@@ -119,7 +120,7 @@ public class Pessoa implements  Serializable{
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + Objects.hashCode(this.getId());
         return hash;
     }
 
@@ -139,6 +140,20 @@ public class Pessoa implements  Serializable{
             return false;
         }
         return true;
+    }
+
+    /**
+     * @return the enderecos
+     */
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    /**
+     * @param enderecos the enderecos to set
+     */
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
     
     
