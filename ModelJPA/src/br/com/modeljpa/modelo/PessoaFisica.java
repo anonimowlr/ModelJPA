@@ -6,12 +6,19 @@
 package br.com.modeljpa.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -51,6 +58,21 @@ public class PessoaFisica  extends Pessoa implements Serializable{
     @NotBlank(message = "A senha   nao pode ser  em branco")
     @Length(max = 20,message = "A senha  nao pode ter mais de {max} caracteres") 
   private String senha;
+ 
+ @ManyToMany(fetch = FetchType.LAZY) // lazy carregamento tardio
+ @JoinTable(name = "tb_desejos",joinColumns = @JoinColumn(name = "pessoa_fisica",referencedColumnName = "id",nullable = false),
+         inverseJoinColumns = @JoinColumn(name = "produto",referencedColumnName = "id",nullable = false),uniqueConstraints = {@UniqueConstraint(columnNames = {"pessoa_fisica","produto"})})
+ private List<Produto> desejos = new ArrayList<>();
+
+    public List<Produto> getDesejos() {
+        return desejos;
+    }
+
+    public void setDesejos(List<Produto> desejos) {
+        this.desejos = desejos;
+    }
+ 
+
 
     /**
      * @return the rg
@@ -121,7 +143,7 @@ public class PessoaFisica  extends Pessoa implements Serializable{
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
     
     
 }

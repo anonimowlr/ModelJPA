@@ -61,10 +61,10 @@ public class Endereco  implements Serializable{
     
    private String cep;
       
-      @Column(name = "bairro", length = 8, nullable = false)
+      @Column(name = "bairro", length = 50, nullable = false)
     @NotNull(message = "O bairro nao pode ser nulo")
     @NotBlank(message = "O bairro nao pode ser  em branco")
-    @Length(max = 8,message = "O bairro nao pode ter mais de {max} caracteres")
+    @Length(max = 50,message = "O bairro nao pode ter mais de {max} caracteres")
    private String bairro;
       @Column(name = "referencia", length = 30, nullable = false)
     @NotNull(message = "O referencia nao pode ser nulo")
@@ -77,6 +77,11 @@ public class Endereco  implements Serializable{
       @JoinColumn(name = "id_da_pessoa",referencedColumnName = "id",nullable = false)
       @ForeignKey(name = "fk_pessoa_id")
        private Pessoa pessoa;
+      
+      @ManyToOne
+      @JoinColumn(name = "id_tipo_endereco",referencedColumnName = "id",nullable = false)
+      @ForeignKey(name = "fk_tipo_endereco_id")
+      private TipoEndereco tipoEndereco;
 
     /**
      * @return the id
@@ -233,6 +238,20 @@ public class Endereco  implements Serializable{
             return false;
         }
         return true;
+    }
+
+    /**
+     * @return the tipoEndereco
+     */
+    public TipoEndereco getTipoEndereco() {
+        return tipoEndereco;
+    }
+
+    /**
+     * @param tipoEndereco the tipoEndereco to set
+     */
+    public void setTipoEndereco(TipoEndereco tipoEndereco) {
+        this.tipoEndereco = tipoEndereco;
     }
    
    

@@ -9,8 +9,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,13 +54,23 @@ public class Pessoa implements  Serializable{
     @Length(max = 14,message = "O telefone nao pode ter mais de {max} caracteres")
     private String telefone;
       
-      @OneToMany(mappedBy = "pessoa")// aqui coloca o nome do atribudo da classe relacionada que mantem  alicagação neste caso o atributo pessoa da classe  Endereco
+      @OneToMany(mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)// aqui coloca o nome do atribudo da classe relacionada que mantem  alicagação neste caso o atributo pessoa da classe  Endereco
       private List<Endereco> enderecos = new ArrayList<>();
 
     public Pessoa() {
     }
 
+    public void adicionarEndereco(Endereco endereco){
+        endereco.setPessoa(this);
+        this.enderecos.add(endereco);
+        
+    }
       
+    public void removerEndereco(int index){
+        
+        this.enderecos.remove(index);
+        
+    }
       
       
     /**
