@@ -6,30 +6,27 @@
 package br.com.modeljpa.junit;
 
 import br.com.modeljpa.jpa.EntityManagerUtil;
-import br.com.modeljpa.modelo.Endereco;
-import br.com.modeljpa.modelo.Estado;
-import br.com.modeljpa.modelo.Marca;
-import br.com.modeljpa.modelo.Pais;
 import br.com.modeljpa.modelo.PessoaFisica;
-import br.com.modeljpa.modelo.TipoEndereco;
+import br.com.modeljpa.modelo.Produto;
+import br.com.modeljpa.modelo.Venda;
+import br.com.modeljpa.modelo.VendaItens;
 import java.util.Calendar;
 import javax.persistence.EntityManager;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author PC_LENOVO
  */
-public class TestePersistirMarca {
+public class TestePersistirVenda {
     
     EntityManager em;
     
     
-    public TestePersistirMarca() {
+    public TestePersistirVenda() {
     }
     
     @Before
@@ -49,16 +46,35 @@ public class TestePersistirMarca {
         boolean exception = false;
         
         try{
-            Marca marca = new Marca();
-           marca.setDescricaoMarca("Marca2");
-           
+            
+            PessoaFisica pf = em.find(PessoaFisica.class, 1);
+            Produto produto = em.find(Produto.class, 1);
+            Venda v = new Venda();
           
            
+           
+           v.setData(Calendar.getInstance());
+            v.setParcelas(3);
+            v.setPessoaFisica(pf);
             
+            VendaItens itens = new VendaItens();
+            
+          
+            itens.setProduto(produto);
+            itens.setQuantidade(2.0);
+            itens.setValorUnitario(10.00);
+            itens.setValorTotal(itens.getQuantidade() * itens.getValorUnitario());
+          
+            
+          
+            
+            v.adicionarItem(itens);
+            itens.setVenda(v);
             
             
             em.getTransaction().begin();
-            em.persist(marca);
+            em.persist(v);
+            
             em.getTransaction().commit();
         }catch(Exception e){
             exception=true;

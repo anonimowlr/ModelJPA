@@ -6,10 +6,12 @@
 package br.com.modeljpa.junit;
 
 import br.com.modeljpa.jpa.EntityManagerUtil;
+import br.com.modeljpa.modelo.Categoria;
 import br.com.modeljpa.modelo.Endereco;
 import br.com.modeljpa.modelo.Estado;
 import br.com.modeljpa.modelo.Marca;
 import br.com.modeljpa.modelo.Pais;
+import br.com.modeljpa.modelo.Permissao;
 import br.com.modeljpa.modelo.PessoaFisica;
 import br.com.modeljpa.modelo.TipoEndereco;
 import java.util.Calendar;
@@ -24,12 +26,12 @@ import static org.junit.Assert.*;
  *
  * @author PC_LENOVO
  */
-public class TestePersistirMarca {
+public class TestePersistirPermissao {
     
     EntityManager em;
     
     
-    public TestePersistirMarca() {
+    public TestePersistirPermissao() {
     }
     
     @Before
@@ -49,8 +51,14 @@ public class TestePersistirMarca {
         boolean exception = false;
         
         try{
-            Marca marca = new Marca();
-           marca.setDescricaoMarca("Marca2");
+            Permissao permissao = new Permissao();
+           permissao.setNome("Administrador");
+           permissao.setDescricao("Adminisrador do sistema");
+           
+            Permissao permissao2 = new Permissao();
+            permissao2.setNome("Usuario");
+            permissao2.setDescricao("Usuarios do sistema");
+           
            
           
            
@@ -58,7 +66,8 @@ public class TestePersistirMarca {
             
             
             em.getTransaction().begin();
-            em.persist(marca);
+            em.persist(permissao);
+            em.persist(permissao2);
             em.getTransaction().commit();
         }catch(Exception e){
             exception=true;

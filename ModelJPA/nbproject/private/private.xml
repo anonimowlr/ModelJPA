@@ -8,6 +8,8 @@
             <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/src/br/com/modeljpa/modelo/Categoria.java</file>
             <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/src/br/com/modeljpa/testes/TesteExcluirPais.java</file>
             <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/test/br/com/modeljpa/junit/TestePersistirCategoria.java</file>
+            <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/src/META-INF/persistence.xml</file>
+            <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/src/br/com/modeljpa/modelo/Permissao.java</file>
             <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/src/br/com/modeljpa/testes/TesteValidacaoPais.java</file>
             <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/src/br/com/modeljpa/testes/TestePersistirTipoEndereco.java</file>
             <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/test/br/com/modeljpa/junit/TestePersistirDesejos.java</file>
@@ -24,6 +26,7 @@
             <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/src/br/com/modeljpa/modelo/Produto.java</file>
             <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/src/br/com/modeljpa/modelo/Marca.java</file>
             <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/test/br/com/modeljpa/junit/TestePersistirTipoEndereco.java</file>
+            <file>file:/C:/Users/PC_LENOVO/Documents/NetBeansProjects/ModelJPA/test/br/com/modeljpa/junit/TestePersistirPermissao.java</file>
         </group>
     </open-files>
 </project-private>

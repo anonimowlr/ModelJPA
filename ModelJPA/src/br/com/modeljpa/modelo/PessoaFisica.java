@@ -30,39 +30,47 @@ import org.hibernate.validator.constraints.br.CPF;
  */
 @Entity
 @Table(name = "pessoa_fisica")
-public class PessoaFisica  extends Pessoa implements Serializable{
-    
-   @Column(name = "RG", length = 10, nullable = false)
+public class PessoaFisica extends Pessoa implements Serializable {
+
+    @Column(name = "RG", length = 10, nullable = false)
     @NotNull(message = "O RG nao pode ser nulo")
     @NotBlank(message = "O RG nao pode ser  em branco")
-    @Length(max = 10,message = "O rg nao pode ter mais de {max} caracteres") 
-  private String rg;
+    @Length(max = 10, message = "O rg nao pode ter mais de {max} caracteres")
+    private String rg;
     @Column(name = "CPF", length = 14, nullable = false)
     @NotNull(message = "O CPF nao pode ser nulo")
     @NotBlank(message = "O CPF nao pode ser  em branco")
-    @Length(max = 14 ,message = "O CPF nao pode ter mais de {max} caracteres") 
+    @Length(max = 14, message = "O CPF nao pode ter mais de {max} caracteres")
     @CPF(message = "CPF invalido")
-  private String cpf;
-    
-@NotNull(message = "O nascimento nao pode ser nulo")
-@Column(name = "nascimento", nullable = false)
-@Temporal(TemporalType.DATE)
-  private Calendar nascimento;
- @Column(name = "nome_usuario", length = 10, nullable = false, unique = true)
+    private String cpf;
+
+    @NotNull(message = "O nascimento nao pode ser nulo")
+    @Column(name = "nascimento", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Calendar nascimento;
+    @Column(name = "nome_usuario", length = 10, nullable = false, unique = true)
     @NotNull(message = "O nome  de usuario nao pode ser nulo")
     @NotBlank(message = "O nome de usuario  nao pode ser  em branco")
-    @Length(max = 10,message = "O nome de usuario  nao pode ter mais de {max} caracteres") 
-  private String nomeUsuario;
- @Column(name = "senha", length = 20, nullable = false)
+    @Length(max = 10, message = "O nome de usuario  nao pode ter mais de {max} caracteres")
+    private String nomeUsuario;
+    @Column(name = "senha", length = 20, nullable = false)
     @NotNull(message = "A senha   usuario nao pode ser nula")
     @NotBlank(message = "A senha   nao pode ser  em branco")
-    @Length(max = 20,message = "A senha  nao pode ter mais de {max} caracteres") 
-  private String senha;
- 
- @ManyToMany(fetch = FetchType.LAZY) // lazy carregamento tardio
- @JoinTable(name = "tb_desejos",joinColumns = @JoinColumn(name = "pessoa_fisica",referencedColumnName = "id",nullable = false),
-         inverseJoinColumns = @JoinColumn(name = "produto",referencedColumnName = "id",nullable = false),uniqueConstraints = {@UniqueConstraint(columnNames = {"pessoa_fisica","produto"})})
- private List<Produto> desejos = new ArrayList<>();
+    @Length(max = 20, message = "A senha  nao pode ter mais de {max} caracteres")
+    private String senha;
+
+    @ManyToMany(fetch = FetchType.LAZY) // lazy carregamento tardio
+    @JoinTable(name = "tb_desejos", joinColumns = @JoinColumn(name = "pessoa_fisica", referencedColumnName = "id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "produto", referencedColumnName = "id", nullable = false), uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"pessoa_fisica", "produto"})})
+    private List<Produto> desejos = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.LAZY) // lazy carregamento tardio
+    @JoinTable(name = "permissoes", joinColumns = @JoinColumn(name = "nome_usuario", referencedColumnName = "nome_usuario", nullable = false),
+         inverseJoinColumns = @JoinColumn(name = "permissao", referencedColumnName = "nome", nullable = false), uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"nome_usuario", "permissao"})})
+
+    private List<Permissao> permissoes = new ArrayList<>();
 
     public List<Produto> getDesejos() {
         return desejos;
@@ -71,8 +79,6 @@ public class PessoaFisica  extends Pessoa implements Serializable{
     public void setDesejos(List<Produto> desejos) {
         this.desejos = desejos;
     }
- 
-
 
     /**
      * @return the rg
@@ -144,6 +150,18 @@ public class PessoaFisica  extends Pessoa implements Serializable{
         this.senha = senha;
     }
 
-    
-    
+    /**
+     * @return the permissoes
+     */
+    public List<Permissao> getPermissoes() {
+        return permissoes;
+    }
+
+    /**
+     * @param permissoes the permissoes to set
+     */
+    public void setPermissoes(List<Permissao> permissoes) {
+        this.permissoes = permissoes;
+    }
+
 }
